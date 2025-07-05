@@ -8,8 +8,8 @@ This project is a Java-based implementation of a simple e-commerce system, devel
 
 ### Product Types
 - `Product`: Basic product with name, price, quantity
-- `ExpirableProduct`: Products with expiration dates (e.g., Cheese, Biscuits)
-- `ShippableProduct`: Products that require shipping and have a weight (e.g., TV)
+- `ExpirableProduct`: Products with expiration dates (Cheese, Biscuits)
+- `ShippableProduct`: Products that require shipping and have a weight (TV)
 - `ExpirableShippableProduct`: Combines both expiration and shipping features
 
 ### Cart and Checkout
@@ -49,3 +49,8 @@ Run it via:
 javac *.java
 java TestEcommerce
 ```
+## Getting Started
+
+### Prerequisites
+- Java 8 or above
+- Git (for cloning)
