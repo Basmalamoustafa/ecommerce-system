@@ -1,10 +1,9 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Checkout {
-    private ShippingService shippingService;
+    private final ShippingService shippingService;
 
     public Checkout(ShippingService shippingService) {
         this.shippingService = shippingService;
@@ -28,41 +27,27 @@ public class Checkout {
                 System.out.println("Error: " + product.getName() + " is out of stock. Available: " + product.getQuantity() + ", Requested: " + quantity);
                 return;
             }
-            if (product instanceof ExpirableProduct) {
-                ExpirableProduct expirableProduct = (ExpirableProduct) product;
-                if (expirableProduct.isExpired()) {
+
+            if (product instanceof ExpirableProduct expirable) {
+                if (expirable.isExpired()) {
                     System.out.println("Error: " + product.getName() + " is expired.");
                     return;
                 }
             }
-            if (product instanceof ShippableProduct) {
-                ShippableProduct shippableProduct = (ShippableProduct) product;
+
+            if (product instanceof ShippableProduct shippable) {
                 shippableItemsForService.add(new ShippableItem() {
                     @Override
                     public String getName() {
-                        return quantity + "x " + shippableProduct.getName();
+                        return quantity + "x " + shippable.getName();
                     }
 
                     @Override
                     public double getWeight() {
-                        return shippableProduct.getWeight() * quantity;
+                        return shippable.getWeight() * quantity;
                     }
                 });
-                shippingFees += shippableProduct.getWeight() * quantity * 0.01;
-            } else if (product instanceof ExpirableShippableProduct) {
-                ExpirableShippableProduct expirableShippableProduct = (ExpirableShippableProduct) product;
-                shippableItemsForService.add(new ShippableItem() {
-                    @Override
-                    public String getName() {
-                        return quantity + "x " + expirableShippableProduct.getName();
-                    }
-
-                    @Override
-                    public double getWeight() {
-                        return expirableShippableProduct.getWeight() * quantity;
-                    }
-                });
-                shippingFees += expirableShippableProduct.getWeight() * quantity * 0.01;
+                shippingFees += shippable.getWeight() * quantity * 0.01;
             }
         }
 
@@ -74,6 +59,7 @@ public class Checkout {
         }
 
         customer.deductBalance(totalPaidAmount);
+
         for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
@@ -97,4 +83,3 @@ public class Checkout {
         System.out.println("Customer current balance: " + customer.getBalance());
     }
 }
-

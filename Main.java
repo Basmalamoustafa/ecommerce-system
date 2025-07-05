@@ -11,7 +11,7 @@ public class Main {
         Product mobileScratchCard = new Product("Mobile Scratch Card", 50, 10);
         ExpirableShippableProduct biscuits = new ExpirableShippableProduct("Biscuits", 150, 3, LocalDate.now().plus(10, ChronoUnit.DAYS), 700); // 700g
 
-        Customer customer = new Customer("John Doe", 2000); // Increased balance for successful checkout
+        Customer customer = new Customer("Basmala Moustafa", 2000); // Increased balance for successful checkout
 
         Cart myCart = new Cart();
 
