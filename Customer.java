@@ -1,5 +1,5 @@
 public class Customer {
-    private String name;
+    private final String name;
     private double balance;
 
     public Customer(String name, double balance) {
@@ -15,12 +15,9 @@ public class Customer {
         return balance;
     }
 
-    public boolean deductBalance(double amount) {
+    public void deductBalance(double amount) {
         if (this.balance >= amount) {
             this.balance -= amount;
-            return true;
         }
-        return false;
     }
 }
-

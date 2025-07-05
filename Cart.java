@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
-    private Map<Product, Integer> items;
+    private final Map<Product, Integer> items;
 
     public Cart() {
         this.items = new HashMap<>();

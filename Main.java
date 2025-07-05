@@ -1,17 +1,16 @@
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class Main {
     public static void main(String[] args) {
         ShippingService shippingService = new ShippingService();
         Checkout checkoutProcessor = new Checkout(shippingService);
 
-        ExpirableShippableProduct cheese = new ExpirableShippableProduct("Cheese", 100, 5, LocalDate.now().plus(30, ChronoUnit.DAYS), 200); // 200g
-        ShippableProduct tv = new ShippableProduct("TV", 500, 2, 10000); // 10kg
+        ExpirableShippableProduct cheese = new ExpirableShippableProduct("Cheese", 100, 5, LocalDate.now().plusDays(30), 200);
+        ShippableProduct tv = new ShippableProduct("TV", 500, 2, 10000);
         Product mobileScratchCard = new Product("Mobile Scratch Card", 50, 10);
-        ExpirableShippableProduct biscuits = new ExpirableShippableProduct("Biscuits", 150, 3, LocalDate.now().plus(10, ChronoUnit.DAYS), 700); // 700g
+        ExpirableShippableProduct biscuits = new ExpirableShippableProduct("Biscuits", 150, 3, LocalDate.now().plusDays(10), 700);
 
-        Customer customer = new Customer("Basmala Moustafa", 2000); // Increased balance for successful checkout
+        Customer customer = new Customer("Basmala Moustafa", 2000);
 
         Cart myCart = new Cart();
 
@@ -32,4 +31,3 @@ public class Main {
         System.out.println("Biscuits quantity after checkout: " + biscuits.getQuantity());
     }
 }
-

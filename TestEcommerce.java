@@ -1,8 +1,5 @@
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TestEcommerce {
 
@@ -26,7 +23,7 @@ public class TestEcommerce {
         Checkout checkoutProcessor = new Checkout(mockShippingService);
 
         System.out.println("\n--- Test Case 1: Successful Checkout with Mixed Products ---");
-        ExpirableShippableProduct cheese = new ExpirableShippableProduct("Cheese", 100, 5, LocalDate.now().plus(30, ChronoUnit.DAYS), 200);
+        ExpirableShippableProduct cheese = new ExpirableShippableProduct("Cheese", 100, 5, LocalDate.now().plusDays(30), 200);
         ShippableProduct tv = new ShippableProduct("TV", 500, 2, 10000);
         Product mobileScratchCard = new Product("Mobile Scratch Card", 50, 10);
         Customer customer1 = new Customer("Basmala", 1000);
@@ -63,7 +60,7 @@ public class TestEcommerce {
         System.out.println("Customer Salma's balance after checkout: " + customer3.getBalance());
 
         System.out.println("\n--- Test Case 4: Expired Product ---");
-        ExpirableProduct expiredBiscuits = new ExpirableProduct("Expired Biscuits", 50, 10, LocalDate.now().minus(10, ChronoUnit.DAYS));
+        ExpirableProduct expiredBiscuits = new ExpirableProduct("Expired Biscuits", 50, 10, LocalDate.now().minusDays(10));
         Customer customer4 = new Customer("Rahma", 1000);
         Cart cart4 = new Cart();
         cart4.addItem(expiredBiscuits, 1);
@@ -91,4 +88,3 @@ public class TestEcommerce {
         runTests();
     }
 }
-

@@ -1,6 +1,6 @@
 public class Product {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
     private int quantity;
 
     public Product(String name, double price, int quantity) {
@@ -8,25 +8,18 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
     }
-
     public String getName() {
         return name;
     }
-
     public double getPrice() {
         return price;
     }
-
     public int getQuantity() {
         return quantity;
     }
-
-    public boolean decreaseQuantity(int amount) {
+    public void decreaseQuantity(int amount) {
         if (this.quantity >= amount) {
             this.quantity -= amount;
-            return true;
         }
-        return false;
     }
 }
-

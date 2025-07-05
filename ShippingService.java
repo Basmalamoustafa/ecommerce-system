@@ -11,4 +11,3 @@ public class ShippingService {
         System.out.println("Total package weight " + (totalWeight / 1000.0) + "kg");
     }
 }
-

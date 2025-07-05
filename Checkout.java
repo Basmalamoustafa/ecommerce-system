@@ -28,26 +28,26 @@ public class Checkout {
                 return;
             }
 
-            if (product instanceof ExpirableProduct expirable) {
-                if (expirable.isExpired()) {
-                    System.out.println("Error: " + product.getName() + " is expired.");
-                    return;
-                }
+            if (product instanceof ExpirableProduct expirable && expirable.isExpired()) {
+                System.out.println("Error: " + product.getName() + " is expired.");
+                return;
             }
 
-            if (product instanceof ShippableProduct shippable) {
+            if (product instanceof ShippableItem item) {
+                double totalWeight = item.getWeight() * quantity;
+                shippingFees += totalWeight * 0.01;
+
                 shippableItemsForService.add(new ShippableItem() {
                     @Override
                     public String getName() {
-                        return quantity + "x " + shippable.getName();
+                        return quantity + "x " + product.getName();
                     }
 
                     @Override
                     public double getWeight() {
-                        return shippable.getWeight() * quantity;
+                        return totalWeight;
                     }
                 });
-                shippingFees += shippable.getWeight() * quantity * 0.01;
             }
         }
 
