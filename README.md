@@ -49,8 +49,54 @@ Run it via:
 javac *.java
 java TestEcommerce
 ```
+---
+
 ## Getting Started
 
 ### Prerequisites
 - Java 8 or above
 - Git (for cloning)
+
+### Run Locally
+```bash
+# Clone the repository
+git clone https://github.com/your-username/ecommerce-system.git
+cd ecommerce-system
+
+# Compile the project
+javac *.java
+
+# Run the main simulation
+java Main
+
+# Run test scenarios
+java TestEcommerce
+
+```
+---
+
+## Project Structure
+
+```bash
+.
+├── Main.java                   
+├── TestEcommerce.java          
+├── Product.java
+├── ExpirableProduct.java
+├── ShippableProduct.java
+├── ExpirableShippableProduct.java
+├── Cart.java
+├── Checkout.java
+├── Customer.java
+├── ShippingService.java
+├── ShippableItem.java         
+└── README.md
+```
+---
+
+## Assumptions
+- Shipping cost = 0.01 * weight (grams) * quantity
+- Product weight is stored in grams and displayed in kilograms
+- Expired items are determined using LocalDate.now().isAfter(expirationDate)
+- No persistence (database or file storage) is used
+- ShippingService is simulated using console output
